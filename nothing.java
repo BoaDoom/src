@@ -5,8 +5,9 @@ public class StartingDeck {
 	public static int changingCardNumber = 15;
 	public static void main(String[] args) {
 		byte totalPlayerNumber = 2;
+		Scanner keyboard = new Scanner(System.in);  //makes keyboard object
 		int[] deckArray = { 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-		//int currentPlayer = 0;
+		int currentPlayer = 0;
 		int deckPosition = 0;
 		int playerOneHand = 0;
 		int playerTwoHand = 0;
@@ -35,23 +36,25 @@ public class StartingDeck {
 		{
 			System.out.print("something got screwed up, try again");				
 		}
+		System.out.print(playerOneHand);
+		System.out.print(playerTwoHand);
 		
 		int playerTurn = 1;
-		for (int cardsDealtCount = 14; cardsDealtCount > 0; cardsDealtCount--)	//a loop for each card dealt, stops when all cards used
+		for (int cardsDealtCount = 0; cardsDealtCount < deckArray.length; cardsDealtCount++)	//a loop for each card dealt, stops when all cards used
 		{
 			if (playerTurn == 1)
 			{
 				int tempVar = playerOneHand;
-				playerOneHand = dealAndSelectCard(tempVar, deckArray, deckPosition, playerTurn);
+				playerOneHand = dealAndSelectCard(tempVar, deckArray, deckPosition);
 				deckPosition++;
-				System.out.print(playerOneHand + " ");
+				System.out.print(playerOneHand + "");
 			}
 			else if (playerTurn == 2)
 			{
 				int tempVar = playerTwoHand;
-				playerTwoHand = dealAndSelectCard(tempVar, deckArray, deckPosition, playerTurn);
+				playerTwoHand = dealAndSelectCard(tempVar, deckArray, deckPosition);
 				deckPosition++;
-				System.out.print(playerTwoHand + " ");
+				System.out.print(playerTwoHand + "");
 			}
 			playerTurn++;	//move to next player
 			if (playerTurn > totalPlayerNumber)  //if variable goes above number of players, starts over at one
@@ -60,34 +63,16 @@ public class StartingDeck {
 			}
 			
 		}
-		System.out.print("\nPlayer one's card is:" + playerOneHand);
-		System.out.print("\nPlayer two's card is:" + playerTwoHand);
 
 		
 	}
-		public static int dealAndSelectCard(int playerHand, int[] deckArray, int deckPosition, int pNameNum)
+		public static int dealAndSelectCard(int playerHand, int[] deckArray, int deckPosition)
 		{	
-			Scanner keyboard = new Scanner(System.in);  //makes keyboard object
 			int[] tempTwoCardHand = {0, 0};
 			tempTwoCardHand[0] = playerHand;
 			tempTwoCardHand[1] = dealACard(deckArray, deckPosition);
-			int cardChoice = -1;
-			String pName = null;
-			if (pNameNum == 1)
-			{
-				pName = "Player One";
-			}
-			else if (pNameNum == 2)
-			{
-				pName = "Player Two";
-			}
-			while ((cardChoice != 0) && (cardChoice != 1))
-			{
-				System.out.println("\n" + pName + " which card would you like?\n" + "1. " + tempTwoCardHand[0] + "\n2. " + tempTwoCardHand[1]);
-				cardChoice = keyboard.nextInt() - 1;
-			}
-				return tempTwoCardHand[cardChoice];
-			
+			int singleCardReturn = tempTwoCardHand[1]; //temporarily always picking the second card
+			return singleCardReturn;
 		}
 
 		public static int dealACard(int[] deckArray, int cardNumber) //dealing a card
@@ -95,6 +80,17 @@ public class StartingDeck {
 			int aCard = deckArray[cardNumber];
 			return aCard;
 		}
-
+		
+	    /*
+		for (int i2 = 0; i2 < 8; i2++) //prints two players hands
+		{
+		System.out.print(playerOneHand[i2] + " ");
+		}
+		System.out.println();
+		for (int i3 = 0; i3 < 8; i3++)
+		{
+		System.out.print(playerTwoHand[i3] + " ");
+		}
+		*/
 		
 }
