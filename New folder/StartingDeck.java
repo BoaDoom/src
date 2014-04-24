@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class StartingDeck {
+public class StartingDeck0 {
 	public static int changingCardNumber = 15;
 	public static void main(String[] args) {
 		byte totalPlayerNumber = 2;
