@@ -1,7 +1,7 @@
 
 public class Player
 {
-	public int playerCount = 0;
+	public int playerNum = 0;
 	public int winCondition = 0;
 	public int playerOneScore = 0;
 	public int playerTwoScore = 0;
@@ -9,14 +9,14 @@ public class Player
 	public int playerFourScore = 0;
 	public Player(int numberOfPlayers)	
 	{
-		playerCount = numberOfPlayers;
-		if (playerCount == 2){
+		playerNum = numberOfPlayers;
+		if (playerNum == 2){
 			winCondition = 8;
 		}
-		if (playerCount == 3){
+		if (playerNum == 3){
 			winCondition = 6;
 		}
-		if (playerCount == 4){
+		if (playerNum == 4){
 			winCondition = 4;
 		}
 	}

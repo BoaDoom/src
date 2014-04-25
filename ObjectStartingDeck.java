@@ -17,10 +17,10 @@ public class ObjectStartingDeck {
 		Player begin = new Player(numOfPlayers);
 		for (int winCount = 0; winCount == begin.winCondition;) //largest loop, loops for every deck dealt and won
 		{
-			Deck newStack = new Deck();//create a deck object somehow and deal out 1 card per player
+			DealingHands NewRound = new DealingHands(numOfPlayers);
 
 			winCount = lastWinnersWinCount;//tempvar, needs to be the last line in the for loop
 		}
-		System.out.println("Congrats Player" + lastWinner) //lastWinner is a tempvar
+		System.out.println("Congrats Player" + lastWinner); //lastWinner is a tempvar
 	}
 }

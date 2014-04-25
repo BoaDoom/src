@@ -2,13 +2,8 @@
 public class DealingHands
 {
 
-	public int playerCount = 0;
-	
-	
-	public Dealing(int playerCountImport)
-	{
-		playerCount = playerCountImport;
-	}
+	public int playerCount = 0;	
+	public Deck NewRoundOfCards;
 	
 	public int startingCards()
 	{
@@ -17,6 +12,11 @@ public class DealingHands
 		
 		}
 		
+	}
+	
+	public DealingHands(int playerNumImport)
+	{
+		playerCount = playerNumImport;
 	}
 
 }
