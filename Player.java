@@ -3,16 +3,6 @@ public class Player //begin
 {
 	public int playerNum = 0;
 	public int winCondition = 0;
-	public int playerOneScore = 0;
-	public int playerTwoScore = 0;
-	public int playerThreeScore = 0;
-	public int playerFourScore = 0;
-	
-	public int nameAPlayer(int playerTurn)
-	{
-		if  (playerTurn == 1)
-
-	}
 	public Player(int numberOfPlayers)	
 	{
 		playerNum = numberOfPlayers;

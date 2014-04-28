@@ -2,55 +2,47 @@
 public class DealingCards //aRound
 {
 
-	public static int playerCount = 0;	
-	public int[] playerOnesHand = {0, 0};
-	public int[] playerTwosHand = {0, 0};
-	public int[] playerThreesHand = {0, 0};
-	public int[] playerFoursHand = {0, 0};
-	public Deck NewRoundOfCards;
-	
-	public void nextCard(int playerTurn) //puts out next card into the current players hand array
+	int playerCount = 0;
+	int playerTurn = 0;
+	int cardsRemaining = 16;
+	int highScore = 0;
+	boolean somebodyWonAHand = false;
+	Hands Holdings = new Hands(playerCount);
+	Deck RoundOfCards = new Deck();	
+	public DealingCards(int playerNumImport) //deals one card to every hand as the first card
 	{
-		if (playerTurn == 1)
+		if (playerNumImport == 2) 
 		{
-		playerOnesHand[1] = NewRoundOfCards.dealCard();
-		}
-		if (playerTurn == 2)
-		{
-		playerTwosHand[1] = NewRoundOfCards.dealCard();
-		}
-		if (playerTurn == 3)
-		{
-		playerThreesHand[1] = NewRoundOfCards.dealCard();
-		}
-		else
-		{
-		playerFoursHand[1] = NewRoundOfCards.dealCard();
-		}
-	}
-	
-	public DealingCards(int playerNumImport)
-	{
-		if (playerNumImport == 2) //starting hands
-		{
-			playerOnesHand[0] = NewRoundOfCards.dealCard();
-			playerTwosHand[0] = NewRoundOfCards.dealCard();
+			Holdings.playerOnesHand = RoundOfCards.dealCard();
+			Holdings.playerTwosHand = RoundOfCards.dealCard();
+			cardsRemaining = cardsRemaining - 2;
 		}
 		if (playerNumImport == 3)
 		{
-			playerOnesHand[0] = NewRoundOfCards.dealCard();
-			playerTwosHand[0] = NewRoundOfCards.dealCard();
-			playerThreesHand[0] = NewRoundOfCards.dealCard();
+			Holdings.playerOnesHand = RoundOfCards.dealCard();
+			Holdings.playerTwosHand = RoundOfCards.dealCard();
+			Holdings.playerThreesHand = RoundOfCards.dealCard();
+			cardsRemaining = cardsRemaining - 3;
 		}
 		if (playerNumImport == 3)
 		{
-			playerOnesHand[0] = NewRoundOfCards.dealCard();
-			playerTwosHand[0] = NewRoundOfCards.dealCard();
-			playerThreesHand[0] = NewRoundOfCards.dealCard();
-			playerFoursHand[0] = NewRoundOfCards.dealCard();
+			Holdings.playerOnesHand = RoundOfCards.dealCard();
+			Holdings.playerTwosHand = RoundOfCards.dealCard();
+			Holdings.playerThreesHand = RoundOfCards.dealCard();
+			Holdings.playerFoursHand = RoundOfCards.dealCard();
+			cardsRemaining = cardsRemaining - 4;
 		}
 		playerCount = playerNumImport;
 	}
-
+	public int nextRound()
+	{
+		while (somebodyWonAHand == false) //deals cards between players in order until win condition for the hand is met
+		{
+			somebodyWonAHand = Holdings.cardAction(RoundOfCards.dealCard());		
+		}
+		playerTurn = Holdings.playerTurn;
+		return Holdings.highScore;
+		/* a line that sends out the winner of the round */
+	}
 }
 
