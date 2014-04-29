@@ -7,30 +7,23 @@ public class DealingCards //aRound
 	int cardsRemaining = 16;
 	int highScore = 0;
 	boolean somebodyWonAHand = false;
-	Hands Holdings = new Hands(playerCount);
+	Hands Holdings; //moved
 	Deck RoundOfCards = new Deck();	
 	public DealingCards(int playerNumImport) //deals one card to every hand as the first card
 	{
-		if (playerNumImport == 2) 
-		{
+			Holdings = new Hands(playerNumImport);
 			Holdings.playerOnesHand = RoundOfCards.dealCard();
 			Holdings.playerTwosHand = RoundOfCards.dealCard();
 			cardsRemaining = cardsRemaining - 2;
-		}
-		if (playerNumImport == 3)
+		if (playerNumImport >= 3)
 		{
-			Holdings.playerOnesHand = RoundOfCards.dealCard();
-			Holdings.playerTwosHand = RoundOfCards.dealCard();
 			Holdings.playerThreesHand = RoundOfCards.dealCard();
-			cardsRemaining = cardsRemaining - 3;
+			cardsRemaining = cardsRemaining - 1;
 		}
-		if (playerNumImport == 3)
+		if (playerNumImport >= 4)
 		{
-			Holdings.playerOnesHand = RoundOfCards.dealCard();
-			Holdings.playerTwosHand = RoundOfCards.dealCard();
-			Holdings.playerThreesHand = RoundOfCards.dealCard();
 			Holdings.playerFoursHand = RoundOfCards.dealCard();
-			cardsRemaining = cardsRemaining - 4;
+			cardsRemaining = cardsRemaining - 1;
 		}
 		playerCount = playerNumImport;
 	}

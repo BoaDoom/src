@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Hands //Holdings
 
 {
-	private static Scanner keyboard;
+
 	public int cardsRemaining = 16;
 	public int playerTurn = 0;
 	public int playerCount = 0;
@@ -12,6 +12,8 @@ public class Hands //Holdings
 	public int playerFoursHand = 0;
 	public int cardChoice = 0;
 	public int highScore = 0;
+	Scanner keyboard = new Scanner(System.in);
+	SpecialActions amountCompare = new SpecialActions();
 
 	public boolean cardAction(int newCard)
 	{
@@ -39,12 +41,13 @@ public class Hands //Holdings
 		}
 		if (cardsRemaining == 1)
 		{
-			SpecialActions amountCompare = new SpecialActions();
+
 			highScore = amountCompare.calcing(playerOnesHand, playerTwosHand, playerThreesHand, playerFoursHand);
 			boolean winCon = true;
 			playerTurn = amountCompare.winner;
 			return winCon;
 		}
+		cardsRemaining--;
 		return false;
 	}
 
@@ -59,7 +62,7 @@ public class Hands //Holdings
 		System.out.println("1:" + newCard);
 		System.out.println("2:" + playersOldHand);
 		cardChoice = keyboard.nextInt();
-		if (cardChoice != 1 || cardChoice != 2)
+		if (cardChoice != 1 && cardChoice != 2)
 		{
 			System.out.println("please choose option 1 or 2");
 			theChoosing(newCard , playersOldHand);
