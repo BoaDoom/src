@@ -13,7 +13,9 @@ public class Player //begin
 		{
 			winCondition = 6;
 		}
-		else
+		if (numberOfPlayers == 4)
+		{
 			winCondition = 4;
+		}
 	}
 }

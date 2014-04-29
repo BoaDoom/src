@@ -27,14 +27,12 @@ public class DealingCards //aRound
 		}
 		playerCount = playerNumImport;
 	}
-	public int nextRound()
+	public void nextRound()
 	{
 		while (somebodyWonAHand == false) //deals cards between players in order until win condition for the hand is met
 		{
 			somebodyWonAHand = Holdings.cardAction(RoundOfCards.dealCard());		
 		}
-		playerTurn = Holdings.playerTurn;
-		return Holdings.highScore;
 		/* a line that sends out the winner of the round */
 	}
 }

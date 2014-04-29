@@ -41,11 +41,8 @@ public class Hands //Holdings
 		}
 		if (cardsRemaining == 1)
 		{
-
-			highScore = amountCompare.calcing(playerOnesHand, playerTwosHand, playerThreesHand, playerFoursHand);
-			boolean winCon = true;
-			playerTurn = amountCompare.winner;
-			return winCon;
+			amountCompare.calcing(playerOnesHand, playerTwosHand, playerThreesHand, playerFoursHand);
+			return true;
 		}
 		cardsRemaining--;
 		return false;
