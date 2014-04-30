@@ -5,15 +5,15 @@ import java.util.List;
 
 public class DeckOfCards 
 {
+	public static final int[] NUMBER_AND_VALUE_OF_GUARDS = {5, 1}; //first number is amount of cards, second is their value
+	public static final int[] NUMBER_AND_VALUE_OF_PRIESTS = {2, 2};
+	public static final int[] NUMBER_AND_VALUE_OF_BARONS = {2, 3};
+	public static final int[] NUMBER_AND_VALUE_OF_HANDMAIDENS = {2, 4};
+	public static final int[] NUMBER_AND_VALUE_OF_PRINCES = {2, 5};
+	public static final int[] NUMBER_AND_VALUE_OF_KINGS = {1, 6};
+	public static final int[] NUMBER_AND_VALUE_OF_COURTESANS = {1, 7};
+	public static final int[] NUMBER_AND_VALUE_OF_PRINCESSES = {1, 8};
 	public static final int TOTAL_NUMBER_OF_CARDS = 16;
-	public static final int[] NUMBER_AND_VALUE_OF_GUARDS = {4, 1}; //first number is amount of cards to start dealing, second is their value
-	public static final int[] NUMBER_AND_VALUE_OF_PRIESTS = {5, 2};
-	public static final int[] NUMBER_AND_VALUE_OF_BARONS = {7, 3};
-	public static final int[] NUMBER_AND_VALUE_OF_HANDMAIDENS = {9, 4};
-	public static final int[] NUMBER_AND_VALUE_OF_PRINCES = {11, 5};
-	public static final int[] NUMBER_AND_VALUE_OF_KINGS = {13, 6};
-	public static final int[] NUMBER_AND_VALUE_OF_COURTESANS = {14, 7};
-	public static final int[] NUMBER_AND_VALUE_OF_PRINCESSES = {15, 8};
     public int [] deckArray = { 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
     
     
@@ -29,17 +29,20 @@ public class DeckOfCards
 	
 	public class singleCards //subclass of deckofcards object, each individual card
 	{
+		public int i = 0;
 		public int valueOfCard = 0;
 		public int cardCounter = 0;
 		singleCards(int i) //subclass constructor
 		{
-			if (i <= NUMBER_AND_VALUE_OF_GUARDS[0])
+			if (i < NUMBER_AND_VALUE_OF_GUARDS[0])
 			{
 				valueOfCard =NUMBER_AND_VALUE_OF_GUARDS[1];
+				cardCounter + 1;
 			}
-			if ((i == NUMBER_AND_VALUE_OF_PRIESTS[0]) || (i == NUMBER_AND_VALUE_OF_PRIESTS[0] + 1));
+			if ((i == NUMBER_AND_VALUE_OF_PRIESTS[0] + cardCounter) || (i == NUMBER_AND_VALUE_OF_PRIESTS[0] + 1));
 			{
 				valueOfCard =NUMBER_AND_VALUE_OF_PRIESTS[1];
+				cardCounter++;
 			}
 			if (i == NUMBER_AND_VALUE_OF_BARONS[0] || (i == NUMBER_AND_VALUE_OF_BARONS[0] + 1))
 			{
