@@ -1,9 +1,10 @@
 package cardGameV3;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.List;
 
-public class DeckOfCards 
+public class DeckOfCards //name of object is Deck
 {
 	public static final int[] NUMBER_AND_VALUE_OF_GUARDS = {5, 1}; //first number is amount of cards, second is their value
 	public static final int[] NUMBER_AND_VALUE_OF_PRIESTS = {2, 2};
@@ -11,66 +12,76 @@ public class DeckOfCards
 	public static final int[] NUMBER_AND_VALUE_OF_HANDMAIDENS = {2, 4};
 	public static final int[] NUMBER_AND_VALUE_OF_PRINCES = {2, 5};
 	public static final int[] NUMBER_AND_VALUE_OF_KINGS = {1, 6};
-	public static final int[] NUMBER_AND_VALUE_OF_COURTESANS = {1, 7};
+	public static final int[] NUMBER_AND_VALUE_OF_COUNTESSES = {1, 7};
 	public static final int[] NUMBER_AND_VALUE_OF_PRINCESSES = {1, 8};
-	public static final int TOTAL_NUMBER_OF_CARDS = 16;
-    public int [] deckArray = { 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+	public static final int cardCount = NUMBER_AND_VALUE_OF_GUARDS[0] + NUMBER_AND_VALUE_OF_PRIESTS[0] + NUMBER_AND_VALUE_OF_BARONS[0] + NUMBER_AND_VALUE_OF_HANDMAIDENS[0]+ NUMBER_AND_VALUE_OF_PRINCES[0] + NUMBER_AND_VALUE_OF_KINGS[0] + NUMBER_AND_VALUE_OF_COUNTESSES[0] + NUMBER_AND_VALUE_OF_PRINCESSES[0];
+    //previous huge like is the total card count given the previous amount values of each card
+	public int cardsDealt = -1;
+	Random randomizer = new Random(); //randomizer
+	List<SingleCards> AllCards = new ArrayList<SingleCards>();
     
+
+    public int dealCard()
+    {
+    	cardsDealt++;
+    	return AllCards.get(cardsDealt).valueOfCard;
+    }
     
-	DeckOfCards() //constructor
-	{
-		List<singleCards> AllCards = new ArrayList<singleCards>();
-		for (int i = 0; i < TOTAL_NUMBER_OF_CARDS -1; i++)
+    public void shuffle()
+    {	
+		for (int firstCardCount = cardCount; firstCardCount > 0; firstCardCount--) //shuffles deck array
 		{
-			singleCards Acard = new singleCards(i); //creates a sub-object for every TOALNUMBEROFCARDS, throwing card number into the constructor
+			int pickedCardNumber = randomizer.nextInt(firstCardCount); //randomizes a number of the deck size
+			AllCards.add(AllCards.get(pickedCardNumber)); //assigns random card from AllCards list to end of the list
+			System.out.println(AllCards.get(pickedCardNumber).valueOfCard);
+			AllCards.remove(pickedCardNumber); //removes the card from the list so it wont get picked again
 		}
+		cardsDealt = -1;
+    }
+        
+	DeckOfCards() //constructor for creating all the cards in the right amount of each
+	{
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_GUARDS[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_GUARDS[1]); //creates a sub-object for every guard
+			AllCards.add(Acard); //adds card into the array list AllCards
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRIESTS[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRIESTS[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_BARONS[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_BARONS[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_HANDMAIDENS[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_HANDMAIDENS[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRINCES[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRINCES[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_KINGS[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_KINGS[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_COUNTESSES[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_COUNTESSES[1]);
+			AllCards.add(Acard);
+		}
+		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRINCESSES[0]; i++)
+		{
+			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRINCESSES[1]);
+			AllCards.add(Acard);
+		}
+		shuffle();
 	}
 	
-	
-	public class singleCards //subclass of deckofcards object, each individual card
-	{
-		public int i = 0;
-		public int valueOfCard = 0;
-		public int cardCounter = 0;
-		singleCards(int i) //subclass constructor
-		{
-			if (i < NUMBER_AND_VALUE_OF_GUARDS[0])
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_GUARDS[1];
-				cardCounter + 1;
-			}
-			if ((i == NUMBER_AND_VALUE_OF_PRIESTS[0] + cardCounter) || (i == NUMBER_AND_VALUE_OF_PRIESTS[0] + 1));
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_PRIESTS[1];
-				cardCounter++;
-			}
-			if (i == NUMBER_AND_VALUE_OF_BARONS[0] || (i == NUMBER_AND_VALUE_OF_BARONS[0] + 1))
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_BARONS[1];
-			}
-			if (i == NUMBER_AND_VALUE_OF_HANDMAIDENS[0] || (i == NUMBER_AND_VALUE_OF_HANDMAIDENS[0] + 1))
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_HANDMAIDENS[1];
-			}
-			if (i == NUMBER_AND_VALUE_OF_PRINCES[0] || (i == NUMBER_AND_VALUE_OF_PRINCES[0] + 1))
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_PRINCES[1];
-			}
-			if (i == NUMBER_AND_VALUE_OF_KINGS[0] || (i == NUMBER_AND_VALUE_OF_KINGS[0] + 1))
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_KINGS[1];
-			}
-			if (i == NUMBER_AND_VALUE_OF_COURTESANS[0])
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_COURTESANS[1];
-			}
-			if (i == NUMBER_AND_VALUE_OF_PRINCESSES[0])
-			{
-				valueOfCard =NUMBER_AND_VALUE_OF_PRINCESSES[1];
-			}
-			
-		}
-			
-		
-	}
 }
