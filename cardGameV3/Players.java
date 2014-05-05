@@ -27,10 +27,17 @@ public class Players {
 			currentCard = nextCard;
 		}
 	}
-	
-	Players(int startingCard, int playerNameTemp)
+	public void scored()
+	{
+		playerScore++;
+	}
+	public void getStartingCard(int startingCard)
 	{
 		currentCard = startingCard;
+	}
+	
+	Players(int playerNameTemp)
+	{
 		playerName = playerNameTemp+1;
 	}
 }

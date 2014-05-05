@@ -13,12 +13,15 @@ public class MainCardGameV3 {
 		int turnCount = 0;
 		int winCondition = 0;
 		int winCount = 0;
-		System.out.println("How many players? (between 2-4)"); //asking for the amount of players
+		int playerScoreFirst = 0;
+		int playerScoreSecond = 0;
+		int highCard = 0;
+		System.out.println("How many players? (between " + MINIMUM_NUM_PLAYERS + "-" + MAXIMUM_NUM_PLAYERS + ")"); //asking for the amount of players
 		int numOfPlayers = keyboard.nextInt();
 		while (numOfPlayers < MINIMUM_NUM_PLAYERS || numOfPlayers > MAXIMUM_NUM_PLAYERS)
 		{			
 			System.out.println("that is not the right number of players");
-			System.out.println("How many players? (between 2-4)");
+			System.out.println("How many players? (between " + MINIMUM_NUM_PLAYERS + "-" + MAXIMUM_NUM_PLAYERS + ")");
 			numOfPlayers = keyboard.nextInt();
 		}
 		if (numOfPlayers == 2)		{ //sets win condition determined by the amount of players
@@ -32,13 +35,18 @@ public class MainCardGameV3 {
 		List<Players> AllPlayers = new ArrayList<Players>(); //creates a list of player objects
 		for (int i = 0; i < numOfPlayers; i++)
 		{
-			Players PlayerNum = new Players(Deck.dealCard(), i); //creates a new object PlayerNum, one for each player count. Gives them a card
+			Players PlayerNum = new Players(/*Deck.dealCard(), */i); //creates a new object PlayerNum, one for each player count. Gives them a card
 			//Deck.dealCard() returns the value of the next card, the deck object auto selects next card
 			AllPlayers.add(PlayerNum);  //adds each player object to the list AllPlayers			
 		}
 		
 		while (winCount < winCondition) //round counting scores
 		{
+			for (int i = 0; i <numOfPlayers; i++) //first card dealt to all players
+			{
+				AllPlayers.get(i).getStartingCard(Deck.dealCard());
+			}
+			
 			while (Deck.cardsDealt < DeckOfCards.cardCount - 1) //deals until all cards are gone
 			{
 
@@ -49,16 +57,33 @@ public class MainCardGameV3 {
 					turnCount = 0;
 				}
 			}
+			for (int i = 0; i < numOfPlayers; i++) //comparing final cards
+			{
+				playerScoreFirst = AllPlayers.get(i).currentCard;
+				playerScoreSecond = AllPlayers.get(i+1).currentCard;
+				if (playerScoreFirst < playerScoreSecond)
+				{
+					playerScoreFirst = playerScoreSecond;
+					highCard = i;
+					
+				}
+			}
+			/*
+			System.out.println(playerScoreFirst);
+			System.out.println(playerScoreSecond);
 			System.out.println(AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore);
 			AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore++;
 			winCount = AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore;
-			
+			*/
+			turnCount = 0;
+			Deck.shuffle();
 		}
 		//there needs to be a count down for the
 		
 	}
-		public static int CompareHands(int Scoreone, int Scoretwo, int Scorethree, int Scorefour)
+		/*public static int CompareHands(int Scoreone, int Scoretwo, int Scorethree, int Scorefour)
 		{
+			/*
 		 	if (Scoreone > Scoretwo && Scoreone > Scorethree && Scoreone > Scorefour)
 		 	{
 			 	System.out.println("The winner of this round is player one with " + Scoreone);
@@ -74,7 +99,8 @@ public class MainCardGameV3 {
 		    	System.out.println("The winner of this round is player three with " + Scorethree);
 		    	return 2;
 		    }
-		    	return 3; 
+		    	return 3; s
 		}
+			*/
 		/* "AllPlayers.get(i)" when i = 2-4 it will refer to each of the objects that are the players hands*/
 }
