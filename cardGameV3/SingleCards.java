@@ -5,7 +5,8 @@ Reference with Deck.AllCards.get(i) will access the single cards in order they a
 Deck.AllCards.get(i).valueOfCard will return the value of the card*/
 {
 	public int valueOfCard = 0;
-	SingleCards(int imported) //subclass constructor
+	
+	SingleCards(int imported) //class constructor
 	{
 		valueOfCard = imported;
 	}

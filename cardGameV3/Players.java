@@ -8,12 +8,13 @@ public class Players {
 	int nextCard = 0;
 	int playerScore = 0;
 	int playerName = 0;
+	int playedCard = 0;
 	Scanner keyboard = new Scanner(System.in);
 	
-	public void getNewCard(int nextCard)
+	public int getNewCard(int nextCard)
 	{
 		System.out.println("Your turn player number " + playerName);
-		System.out.println("Which card would you like to play? the other will be kept");
+		System.out.println("Which card would you like to keep? the other will be played");
 		System.out.println("1:" + currentCard);
 		System.out.println("2:" + nextCard);
 		int cardChoice = keyboard.nextInt();
@@ -22,10 +23,13 @@ public class Players {
 			System.out.println("please choose option 1 or 2");
 			getNewCard(nextCard);
 		}
+		playedCard = nextCard; //card assigned for being activated and used
 		if (cardChoice == 2)
 		{
+			playedCard = currentCard;
 			currentCard = nextCard;
 		}
+		return playedCard;
 	}
 	public void scored()
 	{

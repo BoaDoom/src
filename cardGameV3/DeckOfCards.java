@@ -15,7 +15,7 @@ public class DeckOfCards //name of object is Deck
 	public static final int[] NUMBER_AND_VALUE_OF_COUNTESSES = {1, 7};
 	public static final int[] NUMBER_AND_VALUE_OF_PRINCESSES = {1, 8};
 	public static final int cardCount = NUMBER_AND_VALUE_OF_GUARDS[0] + NUMBER_AND_VALUE_OF_PRIESTS[0] + NUMBER_AND_VALUE_OF_BARONS[0] + NUMBER_AND_VALUE_OF_HANDMAIDENS[0]+ NUMBER_AND_VALUE_OF_PRINCES[0] + NUMBER_AND_VALUE_OF_KINGS[0] + NUMBER_AND_VALUE_OF_COUNTESSES[0] + NUMBER_AND_VALUE_OF_PRINCESSES[0];
-    //previous huge like is the total card count given the previous amount values of each card
+    //previous huge line is the total card count given the previous amount values of each card
 	public int cardsDealt = -1;
 	Random randomizer = new Random(); //randomizer
 	List<SingleCards> AllCards = new ArrayList<SingleCards>();
