@@ -25,11 +25,11 @@ public class MainCardGameV3 {
 			numOfPlayers = keyboard.nextInt();
 		}
 		if (numOfPlayers == 2)		{ //sets win condition determined by the amount of players
-			winCondition = 8;		}
-		if (numOfPlayers == 3)		{
-			winCondition = 6;		}
-		if (numOfPlayers == 4)		{
 			winCondition = 4;		}
+		if (numOfPlayers == 3)		{
+			winCondition = 3;		}
+		if (numOfPlayers == 4)		{
+			winCondition = 2;		}
 		
 		DeckOfCards Deck = new DeckOfCards(); //makes a deck object
 		List<Players> AllPlayers = new ArrayList<Players>(); //creates a list of player objects
@@ -42,65 +42,42 @@ public class MainCardGameV3 {
 		
 		while (winCount < winCondition) //round counting scores
 		{
-			for (int i = 0; i <numOfPlayers; i++) //first card dealt to all players
+			
+			highCard = 0; //reseting the counter to track who has the highest hand at the end
+			turnCount = 0; //resetting the turn counter
+			Deck.shuffle(); //shuffling for next hand
+			for (int i = 0; i <numOfPlayers; i++) //first card dealt to all players, plus shows scores
 			{
 				AllPlayers.get(i).getStartingCard(Deck.dealCard());
+				System.out.println("Player " + (i+1) + "'s score is " + AllPlayers.get(i).playerScore);
 			}
-			
+			System.out.println("Play till " + winCondition + "\n");
 			while (Deck.cardsDealt < DeckOfCards.cardCount - 1) //deals until all cards are gone
 			{
 
-				AllPlayers.get(turnCount).getNewCard(Deck.dealCard());
+				AllPlayers.get(turnCount).getNewCard(Deck.dealCard());//activates the choosing of the card
 				turnCount++;
-				if (turnCount == numOfPlayers) //rotates between player(0) and player(number of players)-1
+				if (turnCount == numOfPlayers) //rotates between player(0) and player(number of players - 1)
 				{
 					turnCount = 0;
 				}
 			}
-			for (int i = 0; i < numOfPlayers; i++) //comparing final cards
+			playerScoreFirst = AllPlayers.get(0).currentCard; //setting the initial value for the other cards to be tested against, player 1's card
+			for (int i = 1; i < numOfPlayers; i++) //comparing final cards. Starts with player(0) and then replaces it if the next is higher
 			{
-				playerScoreFirst = AllPlayers.get(i).currentCard;
-				playerScoreSecond = AllPlayers.get(i+1).currentCard;
+				playerScoreSecond = AllPlayers.get(i).currentCard;
 				if (playerScoreFirst < playerScoreSecond)
 				{
 					playerScoreFirst = playerScoreSecond;
 					highCard = i;
-					
+					/*System.out.println("The test winner is player " + (highCard + 1));*/ //tester for sequential hand comparison
 				}
 			}
-			/*
-			System.out.println(playerScoreFirst);
-			System.out.println(playerScoreSecond);
-			System.out.println(AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore);
-			AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore++;
-			winCount = AllPlayers.get(CompareHands(AllPlayers.get(0).currentCard, AllPlayers.get(1).currentCard, AllPlayers.get(2).currentCard, AllPlayers.get(3).currentCard)).playerScore;
-			*/
-			turnCount = 0;
-			Deck.shuffle();
+			System.out.println("The winner is player " + (highCard + 1));
+			AllPlayers.get(highCard).scored();
+			winCount = AllPlayers.get(highCard).playerScore;
+			/*System.out.println("winning players current score " + AllPlayers.get(highCard).playerScore);*/ //winning players current score
 		}
-		//there needs to be a count down for the
-		
+		System.out.println("Congrats to player " + (highCard+1) + ". You've won");
 	}
-		/*public static int CompareHands(int Scoreone, int Scoretwo, int Scorethree, int Scorefour)
-		{
-			/*
-		 	if (Scoreone > Scoretwo && Scoreone > Scorethree && Scoreone > Scorefour)
-		 	{
-			 	System.out.println("The winner of this round is player one with " + Scoreone);
-		 		return 0;
-		 	}
-		    if (Scoretwo > Scoreone && Scoretwo > Scorethree && Scoretwo > Scorefour)
-		    {
-		    	System.out.println("The winner of this round is player two with " + Scoretwo);
-		    	return 1;
-		    }
-		    if (Scorethree > Scoretwo && Scorethree > Scoreone && Scorethree > Scorefour)
-		    {
-		    	System.out.println("The winner of this round is player three with " + Scorethree);
-		    	return 2;
-		    }
-		    	return 3; s
-		}
-			*/
-		/* "AllPlayers.get(i)" when i = 2-4 it will refer to each of the objects that are the players hands*/
 }

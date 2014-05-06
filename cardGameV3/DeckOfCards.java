@@ -33,7 +33,7 @@ public class DeckOfCards //name of object is Deck
 		{
 			int pickedCardNumber = randomizer.nextInt(firstCardCount); //randomizes a number of the deck size
 			AllCards.add(AllCards.get(pickedCardNumber)); //assigns random card from AllCards list to end of the list
-			System.out.println(AllCards.get(pickedCardNumber).valueOfCard);
+			/*System.out.println(AllCards.get(pickedCardNumber).valueOfCard);*/ //tester for printing out the randomized deck
 			AllCards.remove(pickedCardNumber); //removes the card from the list so it wont get picked again
 		}
 		cardsDealt = -1;
