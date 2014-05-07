@@ -61,12 +61,14 @@ public class MainCardGameV3 {
 				{
 					turnCount = 0;
 				}
+				
 			}
 			
 			
 			playerScoreFirst = AllPlayers.get(0).currentCard; //setting the initial value for the other cards to be tested against, player 1's card
 			for (int i = 1; i < numOfPlayers; i++) //comparing final cards. Starts with player(0) and then replaces it if the next is higher
 			{
+				//AllPlayers.get(i).compareCards(AllPlayers.get(i+1)); //unused card comparer in the player class
 				playerScoreSecond = AllPlayers.get(i).currentCard;
 				if (playerScoreFirst < playerScoreSecond)
 				{

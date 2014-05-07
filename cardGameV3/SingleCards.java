@@ -4,42 +4,30 @@ public class SingleCards /*subclass of deckofcards object, each individual card 
 Reference with Deck.AllCards.get(i) will access the single cards in order they are created here. 
 Deck.AllCards.get(i).valueOfCard will return the value of the card*/
 {
-	public int tempvar;
 	public int valueOfCard = 0;
-	
-	public int chooseAnotherPersonsCard()
+	SingleCards(int valueImport)
 	{
-		return 0;
+		valueOfCard = valueImport;
 	}
 	
-	SingleCards(int imported) //class constructor
-	{
-		valueOfCard = imported;
-		if (imported == 1)
-		{
-			guardAbility cardUsed = new guardAbility();
-		}
-		else
-		{
-			priestAbility cardUsed = new priestAbility();
-		}
-	}
 
 	
-	public class guardAbility
+	public class guardCard
 	{
-		tempvar = SingleCards.chooseAnotherPersonsCard();
+		int tempvar = 10;
 
-		guardAbility() //constructor for guardAbility
+		public guardCard(int valueImport) //constructor for guardAbility
 		{
-			
+			valueOfCard = valueImport;
+			System.out.println("You played a GUARD! good job");
 		}
 	}
-	public class priestAbility
+	public class priestCard
 	{
-		priestAbility()
+		int tempvar = 65;
+		priestCard()
 		{
-			
+			System.out.println("You didn't play a GUARD! good job");
 		}
 	}
 	

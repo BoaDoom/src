@@ -9,14 +9,15 @@ public class Players {
 	int playerScore = 0;
 	int playerName = 0;
 	int playedCard = 0;
+	int keptCard = 0;
 	Scanner keyboard = new Scanner(System.in);
 	
-	public int getNewCard(int nextCard)
+	public void getNewCard(int drawnCard)
 	{
 		System.out.println("Your turn player number " + playerName);
 		System.out.println("Which card would you like to keep? the other will be played");
 		System.out.println("1:" + currentCard);
-		System.out.println("2:" + nextCard);
+		System.out.println("2:" + drawnCard);
 		int cardChoice = keyboard.nextInt();
 		if (cardChoice != 1 && cardChoice != 2)
 		{
@@ -29,8 +30,21 @@ public class Players {
 			playedCard = currentCard;
 			currentCard = nextCard;
 		}
-		return playedCard;
 	}
+	/*
+	public boolean compareCards(Players otherPlayers) //unused card comparer
+	{
+		if (otherPlayers.currentCard < currentCard)
+		{
+			return true;
+		}
+		if (otherPlayers.currentCard == currentCard)
+		{
+			return false;
+		}
+		return false;
+	}
+	*/
 	public void scored()
 	{
 		playerScore++;
