@@ -43,7 +43,7 @@ public class DeckOfCards //name of object is Deck
 	{
 		for (int i = 0; i < NUMBER_AND_VALUE_OF_GUARDS[0]; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_GUARDS[1]); //creates a sub-object for every guard
+			CardCharacters Acard = new guardCard(NUMBER_AND_VALUE_OF_GUARDS[1]); //creates a sub-object for every guard
 			AllCards.add(Acard); //adds card into the array list AllCards
 		}
 		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRIESTS[0]; i++)

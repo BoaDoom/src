@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Players {
 	//hopefully will store cards for comparison, keep score and do the comparisons
+	static int winCondition = 0;
 	int cardA = 0;
 	int nextCard = 0;
 	int playerScore = 0;
@@ -22,26 +23,18 @@ public class Players {
 		playerState = 1;
 	}
 	
-	/*public void importPlayer(Players PList, int playerListNum)
+	static int setWinCondition(int playerCount)
 	{
-		if (playerListNum == 0)
-		{
-			playerOne = PList;
-		}
-		if (playerListNum == 1)
-		{
-			playerTwo = PList;
-		}
-		if (playerListNum == 2)
-		{
-			playerThree = PList;
-		}
-		if (playerListNum == 3)
-		{
-			playerFour = PList;
-		}
+	if (playerCount == 2)		{ //sets win condition determined by the amount of players
+		winCondition = 4;		}
+	if (playerCount == 3)		{
+		winCondition = 3;		}
+	if (playerCount == 4)		{
+		winCondition = 2;		}
+	return winCondition;
 	}
-	*/
+	
+	
 	public void getNewCard(int cardB)
 	{
 		System.out.println("Your turn player number " + playerName);
