@@ -5,17 +5,14 @@ import java.util.Scanner;
 public class Players {
 	//hopefully will store cards for comparison, keep score and do the comparisons
 	static int winCondition = 0;
-	int cardA = 0;
+	SingleCards cardA;
+	SingleCards playedCard;
 	int nextCard = 0;
 	int playerScore = 0;
-	int playerName = 0;
-	int playedCard = 0;
+	public int playerName = 0;
 	int playerListCount = 0;
 	int playerState = 0; //0 is out of round, 1 is in, 2 is handmaiden
-	/*Players playerOne;
-	Players playerTwo;
-	Players playerThree;
-	Players playerFour;*/
+
 	Scanner keyboard = new Scanner(System.in);
 	
 	public void setPlayerStateOn()
@@ -35,12 +32,12 @@ public class Players {
 	}
 	
 	
-	public void getNewCard(int cardB)
+	public void getNewCard(SingleCards cardB)
 	{
 		System.out.println("Your turn player number " + playerName);
 		System.out.println("Which card would you like to keep? the other will be played");
-		System.out.println("1:" + cardA);
-		System.out.println("2:" + cardB);
+		System.out.println("1: " + cardA.valueOfCard + " " + cardA.nameOfCard);
+		System.out.println("2: " + cardB.valueOfCard + " " + cardB.nameOfCard);
 		int cardChoice = keyboard.nextInt();
 		if (cardChoice != 1 && cardChoice != 2)
 		{
@@ -54,10 +51,7 @@ public class Players {
 			cardA = cardB;
 		}
 	}
-	public void activateTrapCard()
-	{
-		
-	}
+
 	/*
 	public boolean compareCards(Players otherPlayers) //unused card comparer
 	{
@@ -76,7 +70,7 @@ public class Players {
 	{
 		playerScore++;
 	}
-	public void getStartingCard(int startingCard)
+	public void getStartingCard(SingleCards startingCard)
 	{
 		cardA = startingCard;
 	}

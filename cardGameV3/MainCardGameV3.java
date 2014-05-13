@@ -16,6 +16,7 @@ public class MainCardGameV3 {
 		int playerScoreFirst = 0;
 		int playerScoreSecond = 0;
 		int highCardOwner = 0;
+		int cardAttack = 0;
 		System.out.println("How many players? (between " + MINIMUM_NUM_PLAYERS + "-" + MAXIMUM_NUM_PLAYERS + ")"); //asking for the amount of players
 		int numOfPlayers = keyboard.nextInt();
 		while (numOfPlayers < MINIMUM_NUM_PLAYERS || numOfPlayers > MAXIMUM_NUM_PLAYERS)
@@ -54,9 +55,8 @@ public class MainCardGameV3 {
 				{				
 					AllPlayers.get(turnCount).setPlayerStateOn(); //switches back to on in case handmaiden activation previous turn
 					AllPlayers.get(turnCount).getNewCard(Deck.dealCard());//activates the choosing of the card, returns the card that was played
-
-					AllPlayers.get(turnCount).activateTrapCard();
-					
+					cardAttack = AllPlayers.get(turnCount).playedCard.checkForAttack(AllPlayers, turnCount); //choosing who to play the card against
+					AllPlayers.get(turnCount).playedCard.attackWithCard(AllPlayers.get(turnCount), AllPlayers.get(cardAttack)); //uses the played cards ability, putting the two players head to head
 				}
 				turnCount++;
 				if (turnCount == numOfPlayers) //rotates between player(0) and player(number of players - 1)
@@ -67,10 +67,10 @@ public class MainCardGameV3 {
 			}
 			
 			
-			playerScoreFirst = AllPlayers.get(0).cardA; //setting the initial value for the other cards to be tested against, player 1's card
+			playerScoreFirst = AllPlayers.get(0).cardA.valueOfCard; //setting the initial value for the other cards to be tested against, player 1's card
 			for (int i = 1; i < numOfPlayers; i++) //comparing final cards. Starts with player(0) and then replaces it if the next is higher
 			{
-				playerScoreSecond = AllPlayers.get(i).cardA;
+				playerScoreSecond = AllPlayers.get(i).cardA.valueOfCard;
 				if (playerScoreFirst < playerScoreSecond)
 				{
 					playerScoreFirst = playerScoreSecond;
@@ -79,7 +79,8 @@ public class MainCardGameV3 {
 			}
 			
 			
-			System.out.println("The winner is player of this hand is " + (highCardOwner + 1));
+			System.out.println("The winner of this hand is player " + (highCardOwner + 1));
+			System.out.println("with a " + AllPlayers.get(highCardOwner).cardA.nameOfCard);
 			AllPlayers.get(highCardOwner).scored();
 			winCount = AllPlayers.get(highCardOwner).playerScore;
 		}

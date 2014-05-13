@@ -1,30 +1,31 @@
 package cardGameV3;
 
 import java.util.ArrayList;
+import cardGameV3.Cards.*;
 import java.util.Random;
 import java.util.List;
 
 public class DeckOfCards //name of object is Deck
 {
-	public static final int[] NUMBER_AND_VALUE_OF_GUARDS = {5, 1}; //first number is amount of cards, second is their value
-	public static final int[] NUMBER_AND_VALUE_OF_PRIESTS = {2, 2};
-	public static final int[] NUMBER_AND_VALUE_OF_BARONS = {2, 3};
-	public static final int[] NUMBER_AND_VALUE_OF_HANDMAIDENS = {2, 4};
-	public static final int[] NUMBER_AND_VALUE_OF_PRINCES = {2, 5};
-	public static final int[] NUMBER_AND_VALUE_OF_KINGS = {1, 6};
-	public static final int[] NUMBER_AND_VALUE_OF_COUNTESSES = {1, 7};
-	public static final int[] NUMBER_AND_VALUE_OF_PRINCESSES = {1, 8};
-	public static final int cardCount = NUMBER_AND_VALUE_OF_GUARDS[0] + NUMBER_AND_VALUE_OF_PRIESTS[0] + NUMBER_AND_VALUE_OF_BARONS[0] + NUMBER_AND_VALUE_OF_HANDMAIDENS[0]+ NUMBER_AND_VALUE_OF_PRINCES[0] + NUMBER_AND_VALUE_OF_KINGS[0] + NUMBER_AND_VALUE_OF_COUNTESSES[0] + NUMBER_AND_VALUE_OF_PRINCESSES[0];
+	public static final int NUMBER_OF_GUARDS = 5; //first number is amount of cards, second is their value
+	public static final int NUMBER_OF_PRIESTS = 2;
+	public static final int NUMBER_OF_BARONS = 2;
+	public static final int NUMBER_OF_HANDMAIDENS = 2;
+	public static final int NUMBER_OF_PRINCES = 2;
+	public static final int NUMBER_OF_KINGS = 1;
+	public static final int NUMBER_OF_COUNTESSES = 1;
+	public static final int NUMBER_OF_PRINCESSES = 1;
+	public static final int cardCount = NUMBER_OF_GUARDS + NUMBER_OF_PRIESTS + NUMBER_OF_BARONS + NUMBER_OF_HANDMAIDENS+ NUMBER_OF_PRINCES + NUMBER_OF_KINGS + NUMBER_OF_COUNTESSES + NUMBER_OF_PRINCESSES;
     //previous huge line is the total card count given the previous amount values of each card
 	public int cardsDealt = -1;
 	Random randomizer = new Random(); //randomizer
 	List<SingleCards> AllCards = new ArrayList<SingleCards>();
     
 
-    public int dealCard()
+    public SingleCards dealCard()
     {
     	cardsDealt++;
-    	return AllCards.get(cardsDealt).valueOfCard;
+    	return AllCards.get(cardsDealt);
     }
     
     public void shuffle()
@@ -41,44 +42,44 @@ public class DeckOfCards //name of object is Deck
         
 	DeckOfCards() //constructor for creating all the cards in the right amount of each
 	{
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_GUARDS[0]; i++)
+		for (int i = 0; i < NUMBER_OF_GUARDS; i++)
 		{
-			CardCharacters Acard = new guardCard(NUMBER_AND_VALUE_OF_GUARDS[1]); //creates a sub-object for every guard
+			SingleCards Acard = new Guard(); //creates a sub-object for every guard
 			AllCards.add(Acard); //adds card into the array list AllCards
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRIESTS[0]; i++)
+		for (int i = 0; i < NUMBER_OF_PRIESTS; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRIESTS[1]);
+			SingleCards Acard = new Priest();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_BARONS[0]; i++)
+		for (int i = 0; i < NUMBER_OF_BARONS; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_BARONS[1]);
+			SingleCards Acard = new Baron();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_HANDMAIDENS[0]; i++)
+		for (int i = 0; i < NUMBER_OF_HANDMAIDENS; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_HANDMAIDENS[1]);
+			SingleCards Acard = new Handmaid();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRINCES[0]; i++)
+		for (int i = 0; i < NUMBER_OF_PRINCES; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRINCES[1]);
+			SingleCards Acard = new Prince();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_KINGS[0]; i++)
+		for (int i = 0; i < NUMBER_OF_KINGS; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_KINGS[1]);
+			SingleCards Acard = new King();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_COUNTESSES[0]; i++)
+		for (int i = 0; i < NUMBER_OF_COUNTESSES; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_COUNTESSES[1]);
+			SingleCards Acard = new Countess();
 			AllCards.add(Acard);
 		}
-		for (int i = 0; i < NUMBER_AND_VALUE_OF_PRINCESSES[0]; i++)
+		for (int i = 0; i < NUMBER_OF_PRINCESSES; i++)
 		{
-			SingleCards Acard = new SingleCards(NUMBER_AND_VALUE_OF_PRINCESSES[1]);
+			SingleCards Acard = new Princess();
 			AllCards.add(Acard);
 		}
 		shuffle();
