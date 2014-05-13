@@ -11,6 +11,7 @@ public class MainCardGameV3 {
 		@SuppressWarnings("resource")
 		Scanner keyboard = new Scanner(System.in);
 		int turnCount = 0;
+		int killedPlayers = 0;
 		int winCondition = 0;
 		int winCount = 0;
 		int playerScoreFirst = 0;
@@ -38,6 +39,7 @@ public class MainCardGameV3 {
 		while (winCount < winCondition) //Overall loop for each round played. Compares highest score for completion
 		{
 			highCardOwner = 0; //reseting the counter to track who has the highest hand at the end
+			killedPlayers = 0;
 			turnCount = 0; //resetting the turn counter
 			Deck.shuffle(); //shuffling for next hand
 			for (int i = 0; i <numOfPlayers; i++) //first card dealt to all players, plus shows scores
@@ -51,26 +53,31 @@ public class MainCardGameV3 {
 			
 			while (Deck.cardsDealt < DeckOfCards.cardCount - 1) //Smaller hand dealing Loop. deals until all cards are gone
 			{
-				if (AllPlayers.get(turnCount).playerState != 0) //checks to see if player is out of hand to skip if necissary
-				{				
-					AllPlayers.get(turnCount).setPlayerStateOn(); //switches back to on in case handmaiden activation previous turn
+				if (AllPlayers.get(turnCount).playerState != 0) //checks to see if player is out of hand to skip if needed
+				{
+					AllPlayers.get(turnCount).setBlockedOff(); //switches back to on in case handmaiden activation previous turn
 					AllPlayers.get(turnCount).getNewCard(Deck.dealCard());//activates the choosing of the card, returns the card that was played
 					cardAttack = AllPlayers.get(turnCount).playedCard.checkForAttack(AllPlayers, turnCount); //choosing who to play the card against
-					AllPlayers.get(turnCount).playedCard.attackWithCard(AllPlayers.get(turnCount), AllPlayers.get(cardAttack)); //uses the played cards ability, putting the two players head to head
+					killedPlayers = killedPlayers + AllPlayers.get(turnCount).playedCard.attackWithCard(AllPlayers.get(turnCount), AllPlayers.get(cardAttack)); //uses the played cards ability, putting the two players head to head. Returns 1 if knocked out
 				}
-				turnCount++;
+
+					turnCount++;
 				if (turnCount == numOfPlayers) //rotates between player(0) and player(number of players - 1)
 				{
 					turnCount = 0;
 				}
-				
+				if (killedPlayers == AllPlayers.size() - 1)
+				{
+					Deck.noNeedCards();
+				}
+
 			}
 			
 			
-			playerScoreFirst = AllPlayers.get(0).cardA.valueOfCard; //setting the initial value for the other cards to be tested against, player 1's card
+			playerScoreFirst = AllPlayers.get(0).savedCardValue; //setting the initial value for the other cards to be tested against, player 1's card
 			for (int i = 1; i < numOfPlayers; i++) //comparing final cards. Starts with player(0) and then replaces it if the next is higher
 			{
-				playerScoreSecond = AllPlayers.get(i).cardA.valueOfCard;
+				playerScoreSecond = AllPlayers.get(i).savedCardValue;
 				if (playerScoreFirst < playerScoreSecond)
 				{
 					playerScoreFirst = playerScoreSecond;

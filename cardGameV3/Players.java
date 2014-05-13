@@ -5,13 +5,15 @@ import java.util.Scanner;
 public class Players {
 	//hopefully will store cards for comparison, keep score and do the comparisons
 	static int winCondition = 0;
-	SingleCards cardA;
+	public SingleCards cardA;
 	SingleCards playedCard;
 	int nextCard = 0;
 	int playerScore = 0;
 	public int playerName = 0;
 	int playerListCount = 0;
-	int playerState = 0; //0 is out of round, 1 is in, 2 is handmaiden
+	public int playerState = 0; //false is out of round, true is in
+	public int blocked = 0; //handmaiden activation
+	public int savedCardValue = 0;
 
 	Scanner keyboard = new Scanner(System.in);
 	
@@ -19,7 +21,21 @@ public class Players {
 	{
 		playerState = 1;
 	}
-	
+	public void setPlayerStateOff()
+	{
+		playerState = 0;
+		savedCardValue = 0; //sets card value to 0 to determine winner
+	}
+	public void setBlockedOn()
+	{
+		blocked = 1;
+	}
+	public void setBlockedOff()
+	{
+		blocked = 0;
+	}
+
+
 	static int setWinCondition(int playerCount)
 	{
 	if (playerCount == 2)		{ //sets win condition determined by the amount of players
@@ -35,7 +51,7 @@ public class Players {
 	public void getNewCard(SingleCards cardB)
 	{
 		System.out.println("Your turn player number " + playerName);
-		System.out.println("Which card would you like to keep? the other will be played");
+		System.out.println("Which card would you like to play? the other will be kept");
 		System.out.println("1: " + cardA.valueOfCard + " " + cardA.nameOfCard);
 		System.out.println("2: " + cardB.valueOfCard + " " + cardB.nameOfCard);
 		int cardChoice = keyboard.nextInt();
@@ -45,11 +61,12 @@ public class Players {
 			getNewCard(cardB);
 		}
 		playedCard = cardB; //card assigned for being activated and used
-		if (cardChoice == 2)
+		if (cardChoice == 1)
 		{
 			playedCard = cardA;
 			cardA = cardB;
 		}
+		savedCardValue = cardA.valueOfCard;
 	}
 
 	/*

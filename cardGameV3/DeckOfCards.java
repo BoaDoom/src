@@ -21,7 +21,10 @@ public class DeckOfCards //name of object is Deck
 	Random randomizer = new Random(); //randomizer
 	List<SingleCards> AllCards = new ArrayList<SingleCards>();
     
-
+	public void noNeedCards()
+	{
+		cardsDealt = cardCount;
+	}
     public SingleCards dealCard()
     {
     	cardsDealt++;
